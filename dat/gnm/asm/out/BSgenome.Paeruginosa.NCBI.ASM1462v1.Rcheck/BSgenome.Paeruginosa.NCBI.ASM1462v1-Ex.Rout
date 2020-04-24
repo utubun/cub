@@ -1,0 +1,130 @@
+
+R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "BSgenome.Paeruginosa.NCBI.ASM1462v1"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('BSgenome.Paeruginosa.NCBI.ASM1462v1')
+Loading required package: BSgenome
+Loading required package: BiocGenerics
+Loading required package: parallel
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:base’:
+
+    expand.grid
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: rtracklayer
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("package")
+> ### * package
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: BSgenome.Paeruginosa.NCBI.ASM1462v1
+> ### Title: Full genome of Pseudomonas aeruginosa UCBPP-PA14
+> ### Aliases: BSgenome.Paeruginosa.NCBI.ASM1462v1-package
+> ###   BSgenome.Paeruginosa.NCBI.ASM1462v1 Paeruginosa
+> ### Keywords: package data
+> 
+> ### ** Examples
+> 
+> BSgenome.Paeruginosa.NCBI.ASM1462v1
+P. aeruginosa PA14 genome:
+# organism: Pseudomonas aeruginosa (P. aeruginosa PA14)
+# provider: NCBI
+# provider version: ASM1462v1
+# release date: 2013-10-06
+# release name: Pseudomonas aeruginosa UCBPP-PA14 (g-proteobacteria)
+# 1 sequences:
+#   chr                                                                        
+# (use 'seqnames()' to see all the sequence names, use the '$' or '[[' operator
+# to access a given sequence)
+> genome <- BSgenome.Paeruginosa.NCBI.ASM1462v1
+> head(seqlengths(genome))
+    chr 
+6537648 
+> 
+> 
+> ## ---------------------------------------------------------------------
+> ## Genome-wide motif searching
+> ## ---------------------------------------------------------------------
+> ## See the GenomeSearching vignette in the BSgenome software
+> ## package for some examples of genome-wide motif searching using
+> ## Biostrings and the BSgenome data packages:
+> if (interactive())
++     vignette("GenomeSearching", package="BSgenome")
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  30.357 1.037 31.594 0 0.041 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
