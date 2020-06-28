@@ -13,5 +13,5 @@ source_url: https://www.ncbi.nlm.nih.gov/assembly/GCF_000014625.1
 organism_biocview: Pseudomonas_aeruginosa
 BSgenomeObjname: Paeruginosa
 seqs_srcdir: /home/ubot/Documents/prj/bac/ribotracker/dat/gnm/asm/src/PA14
-seqnames: 'chr'
-circ_seqs: 'chr'
+seqnames: 'CP000438.1'
+circ_seqs: 'CP000438.1'

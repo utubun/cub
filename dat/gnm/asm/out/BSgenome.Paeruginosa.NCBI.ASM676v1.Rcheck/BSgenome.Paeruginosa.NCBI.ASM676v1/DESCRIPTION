@@ -4,11 +4,11 @@ Description: Complete Genome
 Version: 1.0.0
 Author: Dmytro Strunin
 Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
-Depends: BSgenome (>= 1.54.0)
+Depends: BSgenome (>= 1.56.0)
 Imports: BSgenome
 Suggests:
 License: Artistic-2.0
-organism: Pseudomonas aeruginosa
+organism: Pseudomonas aeruginosa (P. aeruginosa PAO1)
 common_name: P. aeruginosa PA01
 provider: NCBI
 provider_version: ASM676v1
@@ -17,5 +17,5 @@ release_name: Pseudomonas aeruginosa PAO1 (g-proteobacteria)
 source_url: https://www.ncbi.nlm.nih.gov/assembly/GCF_000006765.1
 biocViews: AnnotationData, Genetics, BSgenome, Pseudomonas_aeruginosa
 NeedsCompilation: no
-Packaged: 2020-03-17 15:57:02 UTC; ubot
-Built: R 3.6.3; ; 2020-03-17 15:58:16 UTC; unix
+Packaged: 2020-06-22 16:52:21 UTC; ubot
+Built: R 4.0.1; ; 2020-06-22 16:52:36 UTC; unix

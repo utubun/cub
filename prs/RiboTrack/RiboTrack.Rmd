@@ -1,0 +1,329 @@
+---
+title: "RiboTrack"
+author: "Dmytro Strunin"
+date: '2020-06-30'
+output:
+  ioslides_presentation:
+    smaller: yes
+    widescreen: yes
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(BSgenome)
+library(Biostrings)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+source('./R/Classes.R')
+```
+
+## Input Data
+
+- Genomes:
+    - PAO1;
+    - PA14;
+- Genomic features:
+- tRNA relative concentrations (three replicates)
+
+## Building & installing genomes
+
+Genomes built using `BSgenome` library functionality from *PAO1* & *PA14* fasta files downloaded from NCBI.
+
+```{r, echo = TRUE, eval = FALSE}
+require(Biostrings)
+require(BSgenome)
+
+# P.aeruginosa PA14
+
+forgeBSgenomeDataPkg('../src/PA14/seed.txt')
+
+# installation from cl (tested on Ubuntu 18.04)
+system('R CMD build BSgenome.Paeruginosa.NCBI.ASM1462v1')
+system('R CMD check BSgenome.Paeruginosa.NCBI.ASM1462v1_1.0.0.tar.gz')
+system('R CMD INSTALL BSgenome.Paeruginosa.NCBI.ASM1462v1_1.0.0.tar.gz')
+```
+
+Check if genomes are installed:
+
+```{r echo = TRUE, eval = TRUE, cache = TRUE}
+BSgenome::installed.genomes()
+```
+
+## Loading genomes (PAO1)
+
+```{r echo = TRUE, eval = TRUE, cache = TRUE}
+suppressPackageStartupMessages(library(BSgenome.Paeruginosa.NCBI.ASM676v1))
+
+gnm_pao1 <- BSgenome.Paeruginosa.NCBI.ASM676v1
+gnm_pao1
+```
+
+## Loading genomes (PA14)
+
+```{r echo = TRUE, eval = TRUE, cache = TRUE}
+suppressPackageStartupMessages(library(BSgenome.Paeruginosa.NCBI.ASM1462v1))
+
+gnm_pa14 <- BSgenome.Paeruginosa.NCBI.ASM1462v1
+gnm_pa14
+```
+
+## Genomic features
+
+To have an access to transcript-related features, and map *CDS*s of *PAO1* and *PA14* to their genomes, we built two relevant *TxDb* objects, using `GenomicFeatures` library:
+
+```{r txdb, eval = TRUE, echo = TRUE, cach = TRUE}
+suppressPackageStartupMessages(library(GenomicFeatures))
+
+txdb_pao1 <- loadDb('./dat/gnm/sql/TxDb.Paeruginosa.ASM676v1.sqlite')
+txdb_pa14 <- loadDb('./dat/gnm/sql/TxDb.Paeruginosa.ASM1462v1.sqlite')
+
+txdb_pa14
+```
+
+## TxDb objects
+
+>The GenomicFeatures package uses TxDb objects to store transcript metadata. This
+class maps the 5’ and 3’ untranslated regions (UTRs), protein coding sequences
+(CDSs) and exons for a set of mRNA transcripts to their associated genome. TxDb
+objects have numerous accessors functions to allow such features to be retrieved
+individually or grouped together in a way that reflects the underlying biology.
+
+>All TxDb objects are backed by a SQLite database that manages genomic locations
+and the relationships between pre-processed mRNA transcripts, exons, protein coding
+sequences, and their related gene identifiers
+
+*(TxDb documentation)*
+
+## NB: Synteny
+
+We can align PA01 and PA14 genomes using `DECIFER` library:
+```{r synteny, eval = T, echo = F, cache = TRUE}
+library(DECIPHER)
+
+synteny <- readr::read_rds('./dat/gnm/syn/synteny.Rds')
+
+plot(synteny, main = 'Synteny: PAO1 vs PA14')
+```
+
+## NB: Synteny
+
+With `SynExtend` package we can link relevant genes from two genomes, based on alignment coverage:
+
+```{r synextend01, eval = TRUE, echo = FALSE}
+linked_pairs <- readr::read_rds('./dat/gnm/syn/linked_pairs.Rds')
+
+head(linked_pairs) %>%
+  kable(caption = 'Linked pairs of genes between PAO1 and PA14 (ranges are shown for PA14)') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+`r sprintf('%d more records', nrow(linked_pairs) - 6)`
+
+## NB: Synteny
+
+With these tables we can find e.g. identical genes:
+
+```{r synteny03, eval = TRUE, echo = FALSE}
+GeneCalls <- readr::read_rds('./dat/gnm/syn/gene_calls.Rds')
+gn_cls_identical <- GeneCalls[[2]][GeneCalls[[2]]$ID %in% linked_pairs[linked_pairs$TotalCoverage == 1, ]$gn_02, ]
+  
+gn_cls_identical %>%
+  data.frame() %>%
+  dplyr::select(Start, Stop, Type, ID, Product) %>%
+  head() %>%
+  kable(caption = 'Identical genes for PAO1 and PA14 (ranges are shown for PA14)') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+`r sprintf('%d more records', nrow(gn_cls_identical) - 6)`
+
+## Extracting CDS ranges from PA14 TxDb
+
+```{r}
+cds_pa14 <- cds(txdb_pa14, use.names = T)
+cds_pa14
+```
+
+## Extracting nucleotide sequence using CDS ranges and PA14 genome
+
+```{r dna, echo = TRUE, eval = TRUE, cache = TRUE}
+dna_pa14 <- getSeq(gnm_pa14, cds_pa14)
+print(dna_pa14)
+```
+
+## Extracting codons for each PA14 CDS
+
+```{r codons, eval = FALSE, echo = TRUE}
+library(parallel)
+
+triplets <- function(x) {
+  unlist(strsplit(toString(x), '(?<=.{3})', perl = TRUE), use.names = F)
+}
+
+ncores <- detectCores()
+cl     <- makeCluster(ncores)
+
+#cdn_pao1 <- parLapply(cl, dna_pao1, triplets)
+cdn_pa14 <- parLapply(cl, dna_pa14, triplets)
+
+stopCluster(cl)
+```
+
+```{r codons01, eval = TRUE, echo = FALSE, cache = TRUE}
+cdn_pa14 <- readr::read_rds('./dat/ftb/ASM1462v1.Rds')
+dplyr::glimpse(cdn_pa14[1:5])
+```
+`r sprintf('%d more records', length(cdn_pa14) - 5)`
+
+## PA14 relative tRNA concentrations (raw data)
+
+```{r trnafreq01, eval = TRUE, cache = TRUE, echo = FALSE}
+cfreq <- readr::read_csv('./dat/ftb/codons_rel_freq.csv')
+
+cfreq %>%
+  head() %>%
+  kable(caption = 'Relative tRNA concentrations (PA14 vs PAO1), raw') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+`r sprintf('With %d more records', nrow(cfreq) - 6)`
+
+## PA14 relative tRNA concentrations (clean data)
+
+```{r trnafreq02, eval = TRUE, cache = TRUE, echo = FALSE}
+cfreq %<>%
+  mutate_at(vars(anticodon, codon), ~ gsub('^(.+)-\\d+\\w*\\d*$', '\\1', .)) %>% # 1O1 with O instead of 0
+  tidyr::separate(
+    col  = anticodon,
+    into = c('aa', 'anticodon'),
+    sep  = '-'
+  ) %>%
+  dplyr::mutate(codon = gsub('^\\w+-(.+)$', '\\1', codon)) %>% # aa abbreviation
+  dplyr::mutate(
+    codon   = purrr::map(
+      codon,
+      ~ paste0(
+        substr(., 1, 2),
+        unlist(strsplit(substr(., 3, nchar(.)), split = '/'))
+      )
+    )
+  ) %>%
+  tidyr::unnest(cols = codon) %>%
+  dplyr::group_by(codon) %>%
+  dplyr::summarise(freq = mean(freq)) %>%
+  dplyr::mutate(aa = as.character(translate(DNAStringSet(codon)))) %>%
+  dplyr::select(aa, codon, freq) %>%
+  bind_rows(
+    data.frame(
+      aa    = GENETIC_CODE[!(names(GENETIC_CODE) %in% .$codon)],
+      codon = names(GENETIC_CODE[!(names(GENETIC_CODE) %in% .$codon)]),
+      freq  = 1,
+      stringsAsFactors = FALSE
+    )
+  ) %>%
+  dplyr::filter(aa != '*')
+
+cfreq %>%
+  head() %>%
+  kable(caption = 'Relative tRNA concentrations (PA14 vs PAO1), clean') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+`r sprintf('With %d more records', nrow(cfreq) - 6)`
+
+## Assigning tRNA concentrations to codons
+
+Now we can assign relative PA14 tRNA concentrations to the respective position of codone for all CDS:
+
+```{r trna_freq_list_print, echo = TRUE, eval = F}
+cdn_freq_list_pa14  <- NumericList(sapply(cdn_pa14, function(codon) unlist(freq[codon], use.names = F)))
+```
+```{r trna_freq_list_real, echo = FALSE, eval = T}
+cdn_freq_list_pa14  <- readr::read_rds('./dat/ftb/cdn_freq_list_pa14.Rds')
+dplyr::glimpse(cdn_freq_list_pa14)
+```
+
+## RiboTrack class (class definition)
+
+To make work with the data more comfortable, we create `RiboTrack` class, which contains general information about the strain, and named list of tRNA concentration at each position of the respective codone:
+
+```{r ribotrack_class, eval = FALSE, echo = TRUE}
+
+setClass(
+  'RiboTrack',
+  representation(
+    info  = 'character',
+    freq  = 'CompressedNumericList'
+    ),
+  prototype(
+    info  = NA_character_,
+    freq  = NumericList()
+  )
+)
+
+```
+
+## RiboTrack methods
+
+We can define several useful methods on the `RiboTrack` class, which makes it easier to process data as whole or work with subset of CDSs or single CDS (more methods will be added):
+
+```{r ribotrack_methods}
+methods(class = 'RiboTrack')
+```
+
+## Ribotrack methods (object creation)
+
+```{r ribotrack_object_creation, eval = TRUE, echo = TRUE}
+pa14 <- new('RiboTrack')
+pa14@info <- 'P.aeruginosa, PA14'
+pa14@freq <- cdn_freq_list_pa14
+pa14
+```
+
+## Ribotrack methods (select)
+
+Select, using `[` notation by *index* or *CDC name*
+```{r ribotrack_methods_select, echo = TRUE, eval = TRUE}
+pa14[23]
+pa14['ABJ14997.1']
+```
+
+## Ribotrack methods (arithmetics)
+
+```{r ribotrack_methods_arithmetic, echo = TRUE, eval = TRUE}
+pa14[c(17, 23)] - 1
+1 / pa14[c(17, 23)]
+```
+
+(`+`, `*` are also implemented)
+
+## RiboTrac methods (scale)
+
+Scale and|or center relative tRNA concentrations for all CDSs or for a subset of CDSs:
+
+```{r ribotrack_methods_scale, echo = TRUE, eval = TRUE}
+# Not scaled
+pa14[17]
+# Scaled and centered
+scale(pa14[17], center = TRUE, scale = TRUE)
+```
+
+## RiboTrack methods (cumulative summ)
+
+```{r ribotrack_methods_cumsum, eval = TRUE, echo = TRUE}
+cumsum(pa14[c(17, 23)] - 1)
+```
+
+## RiboTrack methods (plot)
+
+```{r ribotrack_methods_plot, eval = TRUE, echo = FALSE}
+idx = 67
+par(mfrow = c(2, 2))
+plot(pa14[idx], i = 1, main = 'Raw [tRNA]', col = 'blue')
+plot(pa14[idx] - 1, i = 1, main = '[tRNA] - 1', col = 'skyblue')
+plot(scale(pa14[idx] - 1, TRUE, TRUE), i = 1, main = 'Scaled [tRNA] - 1', col = 'green')
+plot(cumsum(scale(pa14[idx] - 1, TRUE, TRUE)), i = 1, main = 'Cumulative sum of scaled [tRNA] - 1', col = 'green')
+```
+

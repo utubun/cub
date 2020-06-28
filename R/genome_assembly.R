@@ -1,12 +1,14 @@
-# forging bsgenome for P.aeruginosa P01 and PA14 strains
+# forging bsgenome for P.aeruginosa PAO1 and PA14 strains
 library(Biostrings)
 library(BSgenome)
 
+wd <- getwd()
+
 setwd('./dat/gnm/asm/out')
 
-# P.aeruginosa P01
+# P.aeruginosa PA01
 
-forgeBSgenomeDataPkg('../src/PA01/seed.txt')
+forgeBSgenomeDataPkg('../src/PAO1/seed.txt')
 
 # installation from cl (tested on Ubuntu 18.04)
 system('R CMD build BSgenome.Paeruginosa.NCBI.ASM676v1')
@@ -26,3 +28,6 @@ system('R CMD INSTALL BSgenome.Paeruginosa.NCBI.ASM1462v1_1.0.0.tar.gz')
 
 # library(BSgenome.Paeruginosa.NCBI.ASM676v1)
 # library(BSgenome.Paeruginosa.NCBI.ASM1462v1)
+
+# go back to working directory
+setwd(wd)

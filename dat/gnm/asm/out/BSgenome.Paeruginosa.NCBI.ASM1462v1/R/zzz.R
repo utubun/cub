@@ -3,9 +3,9 @@
 
 .pkgname <- "BSgenome.Paeruginosa.NCBI.ASM1462v1"
 
-.seqnames <- 'chr'
+.seqnames <- 'CP000438.1'
 
-.circ_seqs <- 'chr'
+.circ_seqs <- 'CP000438.1'
 
 .mseqnames <- NULL
 

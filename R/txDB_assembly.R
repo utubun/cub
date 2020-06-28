@@ -1,18 +1,18 @@
 library('GenomicFeatures')
 library(BSgenome.Paeruginosa.NCBI.ASM676v1)
 library(BSgenome.Paeruginosa.NCBI.ASM1462v1)
-# set location to the project directory!
 
-setwd('~/Documents/prj/bac/ribotracker')
+pao1_gff <- 'https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/006/765/GCA_000006765.1_ASM676v1/GCA_000006765.1_ASM676v1_genomic.gff.gz'
+pa14_gff <- 'https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/014/625/GCA_000014625.1_ASM1462v1/GCA_000014625.1_ASM1462v1_genomic.gff.gz'
+
 # P.aeruginosa strain P01
 
 pa01_txdb <- makeTxDbFromGFF(
-  file       = './dat/gnm/asm/src/PA01/chr.gff',
+  file       = pao1_gff,
+  organism   = 'Pseudomonas aeruginosa',
   dataSource = 'NCBI, Pseudomonas aeruginosa PAO1, assembly ASM676v1',
-  organism   = 'Pseudomonas aeruginosa'
+  circ_seqs  = 'AE004091.2'
 )
-
-seqlevels(pa01_txdb)  <- 'chr'
 
 dir.create('./dat/gnm/sql', F, T)
 
@@ -23,19 +23,11 @@ rm(pa01_txdb)
 # P.aeruginosa strain PA14
 
 pa14_txdb <- makeTxDbFromGFF(
-  file = './dat/gnm/asm/src/PA14/chr.gff',
+  file       = pa14_gff,
+  organism   = 'Pseudomonas aeruginosa',
   dataSource = 'NCBI, Pseudomonas aeruginosa PA14, assembly ASM1462v1',
-  organism = 'Pseudomonas aeruginosa'
+  circ_seqs  = 'CP000438.1'
 )
-
-# Warning message:
-#   In makeTxDbFromGRanges(gr, metadata = metadata) :
-#   The following transcripts were dropped because their exon ranks could not be inferred
-# (either because the exons are not on the same chromosome/strand or because they are
-#   not separated by introns): gene-PA14_RS01280, gene-PA14_RS01345, gene-PA14_RS21005,
-# gene-PA14_RS22430
-
-seqlevels(pa14_txdb)  <- 'chr'
 
 saveDb(pa14_txdb, file = './dat/gnm/sql/TxDb.Paeruginosa.ASM1462v1.sqlite')
 

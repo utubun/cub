@@ -4,7 +4,7 @@ Description: Complete Genome
 Version: 1.0.0
 Author: Dmytro Strunin
 Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
-Depends: BSgenome (>= 1.54.0)
+Depends: BSgenome (>= 1.56.0)
 Imports: BSgenome
 Suggests:
 License: Artistic-2.0
@@ -17,4 +17,4 @@ release_name: Pseudomonas aeruginosa UCBPP-PA14 (g-proteobacteria)
 source_url: https://www.ncbi.nlm.nih.gov/assembly/GCF_000014625.1
 biocViews: AnnotationData, Genetics, BSgenome, Pseudomonas_aeruginosa
 NeedsCompilation: no
-Packaged: 2020-03-17 16:23:29 UTC; ubot
+Packaged: 2020-06-22 17:23:10 UTC; ubot

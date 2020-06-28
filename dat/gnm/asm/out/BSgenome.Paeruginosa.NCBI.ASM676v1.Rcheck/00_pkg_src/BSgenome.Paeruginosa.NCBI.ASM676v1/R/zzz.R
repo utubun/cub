@@ -3,9 +3,9 @@
 
 .pkgname <- "BSgenome.Paeruginosa.NCBI.ASM676v1"
 
-.seqnames <- 'chr'
+.seqnames <- 'AE004091.2'
 
-.circ_seqs <- 'chr'
+.circ_seqs <- 'AE004091.2'
 
 .mseqnames <- NULL
 
@@ -19,7 +19,7 @@
 
     ## Make and export BSgenome object.
     bsgenome <- BSgenome(
-        organism="Pseudomonas aeruginosa",
+        organism="Pseudomonas aeruginosa (P. aeruginosa PAO1)",
         common_name="P. aeruginosa PA01",
         provider="NCBI",
         provider_version="ASM676v1",

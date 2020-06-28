@@ -1,5 +1,5 @@
 
-R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+R version 4.0.1 (2020-06-06) -- "See Things Now"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -87,19 +87,19 @@ Loading required package: rtracklayer
 > 
 > BSgenome.Paeruginosa.NCBI.ASM676v1
 P. aeruginosa PA01 genome:
-# organism: Pseudomonas aeruginosa (P. aeruginosa PA01)
+# organism: Pseudomonas aeruginosa (P. aeruginosa PAO1) (P. aeruginosa PA01)
 # provider: NCBI
 # provider version: ASM676v1
 # release date: 2006-07-07
 # release name: Pseudomonas aeruginosa PAO1 (g-proteobacteria)
 # 1 sequences:
-#   chr                                                                        
+#   AE004091.2                                                                  
 # (use 'seqnames()' to see all the sequence names, use the '$' or '[[' operator
 # to access a given sequence)
 > genome <- BSgenome.Paeruginosa.NCBI.ASM676v1
 > head(seqlengths(genome))
-    chr 
-6264404 
+AE004091.2 
+   6264404 
 > 
 > 
 > ## ---------------------------------------------------------------------
@@ -118,7 +118,7 @@ P. aeruginosa PA01 genome:
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  30.144 0.885 31.399 0 0.04 
+Time elapsed:  31.102 0.814 32.163 0 0 
 > grDevices::dev.off()
 null device 
           1 

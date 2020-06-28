@@ -1,5 +1,5 @@
 
-R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+R version 4.0.1 (2020-06-06) -- "See Things Now"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -93,13 +93,13 @@ P. aeruginosa PA14 genome:
 # release date: 2013-10-06
 # release name: Pseudomonas aeruginosa UCBPP-PA14 (g-proteobacteria)
 # 1 sequences:
-#   chr                                                                        
+#   CP000438.1                                                                  
 # (use 'seqnames()' to see all the sequence names, use the '$' or '[[' operator
 # to access a given sequence)
 > genome <- BSgenome.Paeruginosa.NCBI.ASM1462v1
 > head(seqlengths(genome))
-    chr 
-6537648 
+CP000438.1 
+   6537648 
 > 
 > 
 > ## ---------------------------------------------------------------------
@@ -118,7 +118,7 @@ P. aeruginosa PA14 genome:
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  30.357 1.037 31.594 0 0.041 
+Time elapsed:  31.819 1.301 39.151 0 0 
 > grDevices::dev.off()
 null device 
           1 
