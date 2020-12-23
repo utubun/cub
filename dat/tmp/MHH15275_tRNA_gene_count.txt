@@ -1,0 +1,3 @@
+     1	      1 tRNA-Ile(gat)
+     2	      1 tRNA-Arg(acg)
+     3	      1 tRNA-Ala(tgc)
