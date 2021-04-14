@@ -1,11 +1,18 @@
 #!/bin/bash
 
-PATH = ./dat/raw/fna
+SRCPATH=$(ls ./dat/raw/aln/fna/CH5*)
 
-for FILES in /data3/clinical_isolates_sq/DNA-seq/final_data_all_clinicals/prokka_annotation/fna_files/CH25*.fna
+for FILE in ${SRCPATH}
 do
-  FNAME=`basename ${f%%.*}`;
-  tRNAscan-SE -B -L -H -D -o /home/dst20/dev/ribotracker/dat/trnascan/${FNAME}.out -f /home/dst20/dev/ribotracker/dat/trnascan/${FNAME}.struct  -a /home/dst20/dev/ribotracker/dat/tmp/${FNAME}.fa -m /home/dst20/dev/ribotracker/dat/tmp/${FNAME}.stats -l /home/dst20/dev/ribotracker/dat/tmp/${FNAME}.log -d -Q $f;
+  FNAME=`basename -s .fna ${FILE}`;
+
+  OUTPATH="./dat/out/trs/output/${FNAME}.out";
+  STRPATH="./dat/out/trs/struct/${FNAME}.struct";
+  FASPATH="./dat/out/trs/fasta/${FNAME}.fa";
+  BEDPATH="./dat/out/trs/bed/${FNAME}.bed";
+  STSPATH="./dat/out/trs/stats/${FNAME}.stats";
+  LOGPATH="./dat/out/trs/log.log";
+
+  tRNAscan-SE -B -L -H -D -o ${OUTPATH} -f ${STRPATH} -a ${FASPATH} -b ${BEDPATH} -m ${STSPATH} -l ${LOGPATH} -d -Q $FILE;
   echo "Processing strain ${FNAME}";
-  echo "Writing into /home/dst20/dev/ribotracker/dat/trnascan/ under ${FNAME} identifier";
 done
