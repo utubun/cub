@@ -1,0 +1,94 @@
+
+tRNAscan-SE v.2.0.5 (October 2019) scan results (on host hzi-bsmoba)
+Started: Thu 15 Apr 2021 02:22:31 AM CEST
+
+------------------------------------------------------------
+Sequence file(s) to search:        ./dat/raw/aln/fna/F2055.fna
+Search Mode:                       Bacterial
+Results written to:                ./dat/out/trs/output/F2055.out
+Output format:                     Tabular
+Searching with:                    tRNAscan + EufindtRNA -> Cove
+Isotype-specific model scan:       No
+Covariance model:                  /usr/share/trnascan-se/models/TRNA2-bact.cm
+tRNAscan parameters:               Strict
+EufindtRNA parameters:             Relaxed (Int Cutoff= -36.0)
+
+Temporary directory:               /tmp
+tRNA secondary structure
+    predictions saved to:          ./dat/out/trs/struct/F2055.struct
+tRNA predictions saved to:         ./dat/out/trs/bed/F2055.bed
+Predicted tRNA sequences
+    saved to:                      ./dat/out/trs/fasta/F2055.fa
+Search statistics saved in:        ./dat/out/trs/stats/F2055.stats
+
+Pseudogene checking disabled
+Reporting HMM/2' structure score breakdown
+------------------------------------------------------------
+
+First-pass Stats:
+---------------
+Sequences read:         102
+Seqs w/at least 1 hit:  34
+Bases read:             7039652 (x2 for both strands)
+Bases in tRNAs:         49592
+tRNAs predicted:        403
+Av. tRNA length:        123
+Script CPU time:        0.69 s
+Scan CPU time:          3.92 s
+Scan speed:             3591.7 Kbp/sec
+
+First pass search(es) ended: Thu 15 Apr 2021 02:22:36 AM CEST
+
+Cove Stats:
+-----------
+Candidate tRNAs read:     403
+Cove-confirmed tRNAs:     60
+Bases scanned by Cove:  57652
+% seq scanned by Cove:  0.4 %
+Script CPU time:          0.87 s
+Cove CPU time:            47.90 s
+Scan speed:               1203.6 bp/sec
+
+Cove analysis of tRNAs ended: Thu 15 Apr 2021 02:23:26 AM CEST
+
+Summary
+--------
+Overall scan speed: 263756.2 bp/sec
+
+tRNAs decoding Standard 20 AA:              59
+Selenocysteine tRNAs (TCA):                 1
+Possible suppressor tRNAs (CTA,TTA,TCA):    0
+tRNAs with undetermined/unknown isotypes:   0
+Predicted pseudogenes:                      0
+                                            -------
+Total tRNAs:                                60
+
+tRNAs with introns:     	0
+
+|
+
+Isotype / Anticodon Counts:
+
+Ala     : 3	  AGC:         GGC: 2       CGC:         TGC: 1     
+Gly     : 6	  ACC:         GCC: 3       CCC: 1       TCC: 2     
+Pro     : 3	  AGG:         GGG: 1       CGG: 1       TGG: 1     
+Thr     : 3	  AGT:         GGT: 1       CGT: 1       TGT: 1     
+Val     : 3	  AAC:         GAC: 1       CAC:         TAC: 2     
+Ser     : 4	  AGA:         GGA: 1       CGA: 1       TGA: 1       ACT:         GCT: 1     
+Arg     : 6	  ACG: 3       GCG:         CCG: 1       TCG:         CCT: 1       TCT: 1     
+Leu     : 7	  AAG:         GAG: 2       CAG: 2       TAG: 1       CAA: 1       TAA: 1     
+Phe     : 1	  AAA:         GAA: 1                               
+Asn     : 2	  ATT:         GTT: 2                               
+Lys     : 3	                            CTT:         TTT: 3     
+Asp     : 4	  ATC:         GTC: 4                               
+Glu     : 3	                            CTC:         TTC: 3     
+His     : 2	  ATG:         GTG: 2                               
+Gln     : 1	                            CTG:         TTG: 1     
+Ile     : 1	  AAT:         GAT: 1       CAT:         TAT:       
+Met     : 4	                            CAT: 4                  
+Tyr     : 1	  ATA:         GTA: 1                               
+Supres  : 0	               CTA:         TTA:         TCA:       
+Cys     : 1	  ACA:         GCA: 1                               
+Trp     : 1	                            CCA: 1                  
+SelCys  : 1	                                         TCA: 1     
+

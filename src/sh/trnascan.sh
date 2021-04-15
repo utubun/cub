@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SRCPATH=$(ls ./dat/raw/aln/fna/CH5*)
+SRCPATH=$(ls ./dat/raw/aln/fna/*)
 
 for FILE in ${SRCPATH}
 do

@@ -1,6 +1,6 @@
 
 tRNAscan-SE v.2.0.5 (October 2019) scan results (on host hzi-bsmoba)
-Started: Wed 14 Apr 2021 08:15:44 PM CEST
+Started: Thu 15 Apr 2021 12:28:23 AM CEST
 
 ------------------------------------------------------------
 Sequence file(s) to search:        ./dat/raw/aln/fna/CH5621.fna
@@ -33,11 +33,11 @@ Bases read:             6566773 (x2 for both strands)
 Bases in tRNAs:         48316
 tRNAs predicted:        395
 Av. tRNA length:        122
-Script CPU time:        0.64 s
-Scan CPU time:          3.85 s
-Scan speed:             3411.3 Kbp/sec
+Script CPU time:        0.70 s
+Scan CPU time:          3.97 s
+Scan speed:             3308.2 Kbp/sec
 
-First pass search(es) ended: Wed 14 Apr 2021 08:15:49 PM CEST
+First pass search(es) ended: Thu 15 Apr 2021 12:28:29 AM CEST
 
 Cove Stats:
 -----------
@@ -45,15 +45,15 @@ Candidate tRNAs read:     395
 Cove-confirmed tRNAs:     58
 Bases scanned by Cove:  56216
 % seq scanned by Cove:  0.4 %
-Script CPU time:          0.85 s
-Cove CPU time:            45.04 s
-Scan speed:               1248.1 bp/sec
+Script CPU time:          0.88 s
+Cove CPU time:            44.35 s
+Scan speed:               1267.6 bp/sec
 
-Cove analysis of tRNAs ended: Wed 14 Apr 2021 08:16:36 PM CEST
+Cove analysis of tRNAs ended: Thu 15 Apr 2021 12:29:15 AM CEST
 
 Summary
 --------
-Overall scan speed: 260689.7 bp/sec
+Overall scan speed: 263197.3 bp/sec
 
 tRNAs decoding Standard 20 AA:              57
 Selenocysteine tRNAs (TCA):                 1
