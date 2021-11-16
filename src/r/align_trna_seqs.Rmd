@@ -21,9 +21,11 @@ Read fasta files produced by `tRNAscan-SE`.
 
 ```{r}
 PATH <- list.files('../../dat/out/trs/fasta/', full.names = TRUE)
+
 names(PATH) <- gsub('.fa', '', basename(PATH))
 
 not_empty <- names(PATH)[sapply(PATH, file.size) != 0]
+
 PATH <- PATH[not_empty]
 
 seqlst <- lapply(PATH, readDNAStringSet)
@@ -69,7 +71,10 @@ names(seqs) <- metadata(seqs) %>%
    ) %>%
    pull(name)
 
-seqs_split <- split(seqs, f = metadata(seqs)$trna)
+seqs_split <- split(
+   seqs, 
+   f = paste(metadata(seqs)$trna, metadata(seqs)$anticodone, sep = '-')
+)
 
 alignments <- lapply(seqs_split, msa, method = 'ClustalOmega')
 ```
@@ -77,6 +82,18 @@ alignments <- lapply(seqs_split, msa, method = 'ClustalOmega')
 ## Viewing the results
 
 ```{r}
-msaPrettyPrint(alignments[['Undet']], output = "pdf", showNames = "left", showLogo = "top", askForOverwrite = FALSE, verbose = FALSE, file = "undet_whole_align.pdf")
+msaPrettyPrint(
+   alignments[["Pro-CGG"]], 
+   output = "asis", 
+   subset = c(1:25),
+   logoColors = "rasmol",
+   shadingColors = 'blues',
+   showNames = "left", 
+   showLogo = "top", 
+   showLegend =  FALSE,
+   askForOverwrite = FALSE, 
+   verbose = FALSE, 
+   file = "undet_whole_align.pdf"
+)
 ```
 
