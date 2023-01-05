@@ -21,10 +21,9 @@
     bsgenome <- BSgenome(
         organism="Pseudomonas aeruginosa (P. aeruginosa PAO1)",
         common_name="P. aeruginosa PA01",
+        genome="ASM676v1",
         provider="NCBI",
-        provider_version="ASM676v1",
         release_date="2006-07-07",
-        release_name="Pseudomonas aeruginosa PAO1 (g-proteobacteria)",
         source_url="https://www.ncbi.nlm.nih.gov/assembly/GCF_000006765.1",
         seqnames=.seqnames,
         circ_seqs=.circ_seqs,

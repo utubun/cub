@@ -1,9 +1,9 @@
 import(BSgenome)
 
-### Don't export BSgenome.Paeruginosa.NCBI.ASM1462v1 or Paeruginosa (the new and old names of the
-### BSgenome object defined in this package): the object is created and its 2
-### names are dynamically exported at load time (refer to R/zzz.R for the
-### details).
+### Don't export BSgenome.Paeruginosa.NCBI.ASM1462v1 or Paeruginosa (the new and
+### old names of the BSgenome object defined in this package): the object
+### is created and its 2 names are dynamically exported at load time (refer
+### to R/zzz.R for the details).
 #export(BSgenome.Paeruginosa.NCBI.ASM1462v1)
 #export(Paeruginosa)
 

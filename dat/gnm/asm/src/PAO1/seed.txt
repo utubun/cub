@@ -6,13 +6,12 @@ organism: Pseudomonas aeruginosa (P. aeruginosa PAO1)
 Author: Dmytro Strunin
 common_name: P. aeruginosa PA01
 provider: NCBI
-provider_version: ASM676v1
+genome: ASM676v1
 release_date: 2006-07-07
-release_name: Pseudomonas aeruginosa PAO1 (g-proteobacteria)
 source_url: https://www.ncbi.nlm.nih.gov/assembly/GCF_000006765.1
 organism_biocview: Pseudomonas_aeruginosa
 BSgenomeObjname: Paeruginosa
-seqs_srcdir: /home/ubot/Documents/prj/bac/ribotracker/dat/gnm/asm/src/PAO1
+seqs_srcdir: /home/projects/reg_00001/people/dmystr/cdu/dat/gnm/asm/src/PAO1
 seqnames: 'AE004091.2'
 circ_seqs: 'AE004091.2'
 

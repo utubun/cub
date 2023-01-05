@@ -1,5 +1,5 @@
 
-R version 4.0.1 (2020-06-06) -- "See Things Now"
+R version 4.0.0 (2020-04-24) -- "Arbor Day"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -44,7 +44,7 @@ The following objects are masked from ‘package:base’:
     duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
     lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
     pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
-    tapply, union, unique, unsplit, which, which.max, which.min
+    tapply, union, unique, unsplit, which.max, which.min
 
 Loading required package: S4Vectors
 Loading required package: stats4
@@ -88,10 +88,9 @@ Loading required package: rtracklayer
 > BSgenome.Paeruginosa.NCBI.ASM676v1
 P. aeruginosa PA01 genome:
 # organism: Pseudomonas aeruginosa (P. aeruginosa PAO1) (P. aeruginosa PA01)
+# genome: ASM676v1
 # provider: NCBI
-# provider version: ASM676v1
 # release date: 2006-07-07
-# release name: Pseudomonas aeruginosa PAO1 (g-proteobacteria)
 # 1 sequences:
 #   AE004091.2                                                                  
 # (use 'seqnames()' to see all the sequence names, use the '$' or '[[' operator
@@ -118,7 +117,7 @@ AE004091.2
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  31.102 0.814 32.163 0 0 
+Time elapsed:  5.485 0.371 6.013 0 0 
 > grDevices::dev.off()
 null device 
           1 

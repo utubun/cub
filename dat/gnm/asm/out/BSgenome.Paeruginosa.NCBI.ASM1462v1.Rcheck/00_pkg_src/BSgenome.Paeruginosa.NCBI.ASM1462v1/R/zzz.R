@@ -21,10 +21,9 @@
     bsgenome <- BSgenome(
         organism="Pseudomonas aeruginosa",
         common_name="P. aeruginosa PA14",
+        genome="ASM1462v1",
         provider="NCBI",
-        provider_version="ASM1462v1",
         release_date="2013-10-06",
-        release_name="Pseudomonas aeruginosa UCBPP-PA14 (g-proteobacteria)",
         source_url="https://www.ncbi.nlm.nih.gov/assembly/GCF_000014625.1",
         seqnames=.seqnames,
         circ_seqs=.circ_seqs,
