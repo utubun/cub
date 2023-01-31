@@ -31,3 +31,4 @@ system('R CMD INSTALL BSgenome.Paeruginosa.NCBI.ASM1462v1_1.0.0.tar.gz')
 
 # go back to working directory
 setwd(wd)
+

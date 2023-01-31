@@ -1,6 +1,6 @@
 
-R version 4.0.0 (2020-04-24) -- "Arbor Day"
-Copyright (C) 2020 The R Foundation for Statistical Computing
+R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
+Copyright (C) 2022 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -23,15 +23,8 @@ Type 'q()' to quit R.
 > library('BSgenome.Paeruginosa.NCBI.ASM1462v1')
 Loading required package: BSgenome
 Loading required package: BiocGenerics
-Loading required package: parallel
 
 Attaching package: ‘BiocGenerics’
-
-The following objects are masked from ‘package:parallel’:
-
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB
 
 The following objects are masked from ‘package:stats’:
 
@@ -51,9 +44,9 @@ Loading required package: stats4
 
 Attaching package: ‘S4Vectors’
 
-The following object is masked from ‘package:base’:
+The following objects are masked from ‘package:base’:
 
-    expand.grid
+    I, expand.grid, unname
 
 Loading required package: IRanges
 Loading required package: GenomeInfoDb
@@ -117,7 +110,7 @@ CP000438.1
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  5.499 0.393 6.009 0 0 
+Time elapsed:  6.373 0.176 6.551 0 0 
 > grDevices::dev.off()
 null device 
           1 

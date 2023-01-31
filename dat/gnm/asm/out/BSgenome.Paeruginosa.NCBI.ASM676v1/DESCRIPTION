@@ -4,7 +4,7 @@ Description: Complete Genome
 Version: 1.0.0
 Author: Dmytro Strunin
 Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
-Depends: R (>= 3.5.0), BSgenome (>= 1.58.0)
+Depends: R (>= 3.5.0), BSgenome (>= 1.64.0)
 Imports: BSgenome
 Suggests: 
 License: Artistic-2.0

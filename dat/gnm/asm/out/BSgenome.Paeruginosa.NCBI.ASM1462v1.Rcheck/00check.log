@@ -1,5 +1,5 @@
-* using log directory ‘/home/projects/reg_00001/people/dmystr/cdu/dat/gnm/asm/out/BSgenome.Paeruginosa.NCBI.ASM1462v1.Rcheck’
-* using R version 4.0.0 (2020-04-24)
+* using log directory ‘/home/ubot/dev/cph/cub/dat/gnm/asm/out/BSgenome.Paeruginosa.NCBI.ASM1462v1.Rcheck’
+* using R version 4.2.1 (2022-06-23)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * checking for file ‘BSgenome.Paeruginosa.NCBI.ASM1462v1/DESCRIPTION’ ... OK
@@ -47,21 +47,6 @@ prepare_Rd: package.Rd:14-16: Dropping empty section \details
 * checking Rd contents ... OK
 * checking for unstated dependencies in examples ... OK
 * checking examples ... OK
-* checking PDF version of manual ... WARNING
-LaTeX errors when creating PDF version.
-This typically indicates Rd problems.
-LaTeX errors found:
-! LaTeX Error: File `inconsolata.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-! Emergency stop.
-<read *> 
-         
-l.287 ^^M
-         
-!  ==> Fatal error occurred, no output PDF file produced!
-* checking PDF version of manual without hyperrefs or index ... OK
+* checking PDF version of manual ... OK
 * DONE
-Status: 1 WARNING, 2 NOTEs
+Status: 2 NOTEs

@@ -1,14 +1,16 @@
-# class definition -------------------------------------------------------------
+# utils
+source('./src/r/utils.R')
 
+# class definition -------------------------------------------------------------
 setClass(
-  'RiboTrack',
+  'Cub',
   representation(
     info  = 'character',
-    freq  = 'CompressedNumericList'
-    ),
+    count = 'data.frame'
+  ),
   prototype(
     info  = NA_character_,
-    freq  = NumericList()
+    count = data.frame()
   )
 )
 
@@ -26,7 +28,53 @@ setGeneric("interpolate", function(object, method, window) {
   standardGeneric("interpolate")
 })
 
+setGeneric("get_codons", function(object, ...) {
+  standardGeneric("get_codons")
+})
+
+setGeneric("cub", function(object, ...) {
+  standardGeneric("cub")
+})
+
 # methods ----------------------------------------------------------------------
+
+
+setMethod(get_codons, signature('DNAStringSet'), function(object, ncores = NA, ...) {
+
+  if(is.na(ncores)) {
+    cl <- makeCluster(parallel::detectCores() - 1)
+  } else if(ncores <= parallel::detectCores()) {
+    cl <- makeCluster(ncores)
+  } else {
+    stop('Unable to assign number of cores to cluster: invalid value for ncores argument!')
+  }
+
+  res <- parLapply(cl, object, fun)
+
+  stopCluster(cl)
+
+  return(res)
+})
+
+setAs('DNAStringSet', 'Cub', function(from, to) {
+  cdns <- get_codons(from)
+  new(
+    'Cub',
+    info = NA_character_,
+    count = cdnCount(cdns)
+
+  )
+})
+
+setMethod('cub', signature('Cub'), function(object, method = 'total') {
+  if(method == 'total') {
+    res <- object@count %>%
+      group_by(gene) %>%
+      mutate(frequency = count / sum(count)) %>%
+      dplyr::select(gene, codon, frequency)
+  }
+  return(res)
+})
 
 setMethod("[", signature("RiboTrack"), function(x, i) {
   new(
@@ -36,16 +84,17 @@ setMethod("[", signature("RiboTrack"), function(x, i) {
   )
 })
 
-setMethod("info", signature(object = "RiboTrack"), function(object) {
+setMethod("info", signature(object = "Cub"), function(object) {
   object@info
 })
 
-setMethod("names", signature("RiboTrack"), function(x) {
+setMethod("names", signature("Cub"), function(x) {
   cat(
     x@info,
-    head(names(x@freq))
+    x@gene,
+    '\n'
   )
-  invisible(names(x@freq))
+  invisible(x@gene)
 })
 
 setMethod('-', signature('RiboTrack', 'numeric'), function(e1, e2) {
@@ -144,26 +193,4 @@ harmonic.mean <- function(x) {
   return(1 / mean(1 / x, na.rm = T))
 }
 
-
-# # ------------------------------------------------------------------------------
-#
-# pa14 <- new('RiboTrack')
-# slotNames(pa14)
-# pa14@info <- 'P.aeruginosa, PA14'
-# pa14@freq <- cdn_freq_list_pa14
-# info(pa14)
-# x <- pa14[1]
-# plot(x, 1)
-# plot(pa14, i = 333, col = 'blue')
-# plot(pa14, i = 'ABJ14969.1')
-# x <- x - 1
-# plot(x, i = 1, col = 'salmon')
-# x <- cumsum(x)
-# plot(x, i = 1, col = 'salmon')
-# ctr = mean(unlist(pa14@freq))
-#
-# pa14_scaled <- scale(pa14, ctr, FALSE)
-# pa14_sm_spline <- smooth.spline(pa14_scaled)
-# pa14_spline <- spline(pa14_scaled, 100)
-# pa14_cumsum <- cumsum(pa14_spline)
 

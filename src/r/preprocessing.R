@@ -45,7 +45,6 @@ dna_pa14 <- getSeq(gnm_pa14, cds_pa14)
 # dna_pa01[5036]
 
 triplets <- function(x) {
-  #unlist(strsplit(toString(x), '(?<=.{3})', perl = TRUE), use.names = F)
   res <- tryCatch(
     {
       as.character(codons(x))
@@ -60,7 +59,7 @@ triplets <- function(x) {
 
 ncores <- detectCores()
 
-cl     <- makeCluster(ncores)
+cl     <- makeCluster(ncores - 1)
 
 cdn_pao1 <- parLapply(cl, dna_pao1, triplets)
 cdn_pa14 <- parLapply(cl, dna_pa14, triplets)
@@ -85,6 +84,7 @@ cdnCount <- function(x) {
   res <- parLapply(cl, x, function(datum) {
     tb <- table(datum)
     tb <- tibble::tibble(codon = names(tb), count = tb)
+    tb$count <- tb$count / sum(tb$count) * 100
     return(tb)
     }
   )
@@ -97,19 +97,39 @@ cdnCount <- function(x) {
 
 cdn_cnt_pao1 <- data.table::rbindlist(cdnCount(cdn_pao1), idcol = 'name') %>%
   group_by(codon) %>%
-  summarise(count = sum(count)) %>%
-  mutate(
+  #summarise(count = sum(count)) %>%
+  summarise(
     strain        = 'PAO1',
-    usage_total   = count / sum(count) * 100,
+    usage_total   = mean(count), #count / sum(count) * 100,
+    sd            = sd(count),
     aa            = map_chr(codon, ~GENETIC_CODE[.x])
   ) %>%
-  group_by(aa) %>%
+  unique() %>%
+  arrange(usage_total, sd, aa, codon)
+
+group_by(aa) %>%
   mutate(
     usage_aa = count / sum(count) * 100
   ) %>%
   ungroup() %>%
+    unique() %>%
+    arrange(usage_total, sd, aa, codon)
   dplyr::select(strain, codon, aa, usage_total, usage_aa) %>%
   arrange(aa, desc(usage_total), desc(usage_aa), codon)
+
+  cdn_pa14 <- cdn_pa14[sapply(cdn_pa14, is.character)]
+
+cdn_cnt_pa14 <- data.table::rbindlist(cdnCount(cdn_pa14), idcol = 'name', fill = TRUE) %>%
+  group_by(codon) %>%
+  #summarise(count = sum(count)) %>%
+  summarise(
+    strain        = 'PA14',
+    usage_total   = mean(count), #count / sum(count) * 100,
+    sd            = sd(count),
+    aa            = map_chr(codon, ~GENETIC_CODE[.x])
+  ) %>%
+  unique() %>%
+  arrange(usage_total, sd, aa, codon)
 
 cdn_cnt_pa14 <- data.table::rbindlist(cdnCount(cdn_pa14), idcol = 'name', fill = TRUE) %>%
   group_by(codon) %>%

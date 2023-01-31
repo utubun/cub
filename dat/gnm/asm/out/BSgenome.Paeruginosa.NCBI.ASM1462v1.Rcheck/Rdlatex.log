@@ -1,108 +1,387 @@
 Hmm ... looks like a package
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
+Converting parsed Rd's to LaTeX 
+Creating pdf output from LaTeX ...
+Warning in texi2dvi(file = file, pdf = TRUE, clean = clean, quiet = quiet,  :
+  texi2dvi script/program not available, using emulation
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./Rd2.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, uk
-rainian, russian, bulgarian, loaded.
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18>
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo))
+(/usr/share/R/share/texmf/tex/latex/Rd.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/bm.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/url/url.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex)))))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
-Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/bk10.clo))
-(/services/tools/R/4.0.0-GCC-MKL/lib64/R/share/texmf/tex/latex/Rd.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def))
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu))
-(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def))
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+
+Package hyperref Warning: Option `pagebackref' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+) (/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+Writing index file Rd2.idx
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 No file Rd2.aux.
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
-No file Rd2.toc.
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [1{/usr/share/texlive/t
-exmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-Overfull \hbox (1.52853pt too wide) in paragraph at lines 63--66
-[]\T1/ptm/m/n/10 BSgenome ob-jects and the \T1/pcr/m/n/10 available.genomes \T1
-/ptm/m/n/10 func-tion in the \T1/ptm/b/n/10 BSgenome \T1/ptm/m/n/10 soft-ware p
-ack-
-[2] (./Rd2.aux) )
-(see the transcript file for additional information){/usr/share/texlive/texmf-d
-ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/
-courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr
-8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (2 pages, 69049 bytes).
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+
+Overfull \hbox (7.3682pt too wide) in paragraph at lines 11--12
+ \T1/cmr/bx/n/20.74 `BSgenome.Paeruginosa.NCBI.ASM1462v1' 
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/t1cmss.fd) [1{/home/ubot/.TinyTe
+X/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+No file Rd2.ind.
+[2] (./Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Rfn.DNAString} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Rfn.available.genomes} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.BSgenome} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.BSgenomeForge} has been referenced but does not
+ exist, replaced by a fixed one
+
+ </home/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </h
+ome/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb1000.600pk> </home/
+ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/ubot
+/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1000.600pk> </home/ubot/.Ti
+nyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ubot/.TinyTe
+X/texmf-var/fonts/pk/ljfour/jknappen/ec/ecss1440.600pk>{/home/ubot/.TinyTeX/tex
+mf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </home/ubot/.TinyTeX/texmf-var
+/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ubot/.TinyTeX/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecrm1200.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecbx2074.600pk></home/ubot/.TinyTeX/texmf-dist/fonts/type1/pub
+lic/inconsolata/Inconsolata-zi4r.pfb>
+Output written on Rd2.pdf (2 pages, 82031 bytes).
 Transcript written on Rd2.log.
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013)
+This is makeindex, version 2.15 [TeX Live 2022/dev] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (9 entries accepted, 0 rejected).
+Sorting entries....done (30 comparisons).
+Generating output file Rd2.ind....done (31 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
 (./Rd2.tex
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, uk
-rainian, russian, bulgarian, loaded.
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18>
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo))
+(/usr/share/R/share/texmf/tex/latex/Rd.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/bm.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/url/url.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex)))))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
-Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/bk10.clo))
-(/services/tools/R/4.0.0-GCC-MKL/lib64/R/share/texmf/tex/latex/Rd.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def))
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def))
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.dfu))
-(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def)) (./Rd2.aux)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) (./Rd2.toc)
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [1{/usr/share/texlive/t
-exmf/fonts/map/pdftex/updmap/pdftex.map}]
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-Overfull \hbox (1.52853pt too wide) in paragraph at lines 63--66
-[]\T1/ptm/m/n/10 BSgenome ob-jects and the \T1/pcr/m/n/10 available.genomes \T1
-/ptm/m/n/10 func-tion in the \T1/ptm/b/n/10 BSgenome \T1/ptm/m/n/10 soft-ware p
-ack-
-[2] (./Rd2.aux) )
-(see the transcript file for additional information){/usr/share/texlive/texmf-d
-ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/
-courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr
-8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (2 pages, 69086 bytes).
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+
+Package hyperref Warning: Option `pagebackref' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+) (/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+Writing index file Rd2.idx
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./Rd2.aux) (/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(./Rd2.out) (./Rd2.out)
+Overfull \hbox (7.3682pt too wide) in paragraph at lines 11--12
+ \T1/cmr/bx/n/20.74 `BSgenome.Paeruginosa.NCBI.ASM1462v1' 
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/t1cmss.fd) (./Rd2.toc) [1{/home/
+ubot/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./Rd2.ind
+[2]
+Overfull \hbox (8.6338pt too wide) in paragraph at lines 4--6
+[]| \T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/n/10 , 
+
+Overfull \hbox (8.6338pt too wide) in paragraph at lines 7--9
+[]| \T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/n/10 , 
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 18.
+
+
+Overfull \hbox (25.8567pt too wide) in paragraph at lines 18--20
+[]\T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1-package 
+
+Overfull \hbox (38.4286pt too wide) in paragraph at lines 18--20
+\T1/cmr/m/it/10 (\T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/it
+/10 )\T1/cmr/m/n/10 , 
+
+Overfull \hbox (38.4286pt too wide) in paragraph at lines 28--30
+\T1/cmr/m/it/10 (\T1/zi4/m/it/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/i
+t/10 )\T1/cmr/m/n/10 , 
+[3]) (./Rd2.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Rfn.DNAString} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Rfn.available.genomes} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.BSgenome} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.BSgenomeForge} has been referenced but does not
+ exist, replaced by a fixed one
+
+ </home/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </h
+ome/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/
+ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb1000.600pk> </home/ubot
+/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/ubot/.Ti
+nyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1000.600pk> </home/ubot/.TinyTe
+X/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ubot/.TinyTeX/te
+xmf-var/fonts/pk/ljfour/jknappen/ec/ecss1440.600pk>{/home/ubot/.TinyTeX/texmf-d
+ist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </home/ubot/.TinyTeX/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecbx1000.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecrm1200.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour
+/jknappen/ec/ecbx2074.600pk></home/ubot/.TinyTeX/texmf-dist/fonts/type1/public/
+inconsolata/Inconsolata-zi4r.pfb></home/ubot/.TinyTeX/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb>
+Output written on Rd2.pdf (3 pages, 94076 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.15 [TeX Live 2022/dev] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (9 entries accepted, 0 rejected).
+Sorting entries....done (30 comparisons).
+Generating output file Rd2.ind....done (31 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./Rd2.tex
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18>
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2020/04/10 v1.4m Standard LaTeX document class
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/bk10.clo))
+(/usr/share/R/share/texmf/tex/latex/Rd.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/bm.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/url/url.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/textcomp.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex)))))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+
+Package hyperref Warning: Option `pagebackref' has already been used,
+(hyperref)                setting the option has no effect on input line 388.
+
+) (/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/makeidx.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+Writing index file Rd2.idx
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./Rd2.aux) (/home/ubot/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty)
+(/home/ubot/.TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(./Rd2.out) (./Rd2.out)
+Overfull \hbox (7.3682pt too wide) in paragraph at lines 11--12
+ \T1/cmr/bx/n/20.74 `BSgenome.Paeruginosa.NCBI.ASM1462v1' 
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/home/ubot/.TinyTeX/texmf-dist/tex/latex/base/t1cmss.fd) (./Rd2.toc) [1{/home/
+ubot/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./Rd2.ind
+[2]
+Overfull \hbox (8.6338pt too wide) in paragraph at lines 4--6
+[]| \T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/n/10 , 
+
+Overfull \hbox (8.6338pt too wide) in paragraph at lines 7--9
+[]| \T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/n/10 , 
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 18.
+
+
+Overfull \hbox (25.8567pt too wide) in paragraph at lines 18--20
+[]\T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1-package 
+
+Overfull \hbox (38.4286pt too wide) in paragraph at lines 18--20
+\T1/cmr/m/it/10 (\T1/zi4/m/n/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/it
+/10 )\T1/cmr/m/n/10 , 
+
+Overfull \hbox (38.4286pt too wide) in paragraph at lines 28--30
+\T1/cmr/m/it/10 (\T1/zi4/m/it/10 BSgenome.Paeruginosa.NCBI.ASM1462v1\T1/cmr/m/i
+t/10 )\T1/cmr/m/n/10 , 
+[3]) (./Rd2.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Rfn.DNAString} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Rfn.available.genomes} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.BSgenome} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.BSgenomeForge} has been referenced but does not
+ exist, replaced by a fixed one
+
+ </home/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </h
+ome/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/
+ubot/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrb1000.600pk> </home/ubot
+/.TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/ubot/.Ti
+nyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsl1000.600pk> </home/ubot/.TinyTe
+X/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ubot/.TinyTeX/te
+xmf-var/fonts/pk/ljfour/jknappen/ec/ecss1440.600pk>{/home/ubot/.TinyTeX/texmf-d
+ist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} </home/ubot/.TinyTeX/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecbx1000.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecrm1200.600pk> </home/ubot/.TinyTeX/texmf-var/fonts/pk/ljfour
+/jknappen/ec/ecbx2074.600pk></home/ubot/.TinyTeX/texmf-dist/fonts/type1/public/
+inconsolata/Inconsolata-zi4r.pfb></home/ubot/.TinyTeX/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb>
+Output written on Rd2.pdf (3 pages, 94560 bytes).
 Transcript written on Rd2.log.
 Saving output to ‘BSgenome.Paeruginosa.NCBI.ASM1462v1-manual.pdf’ ...
 Done
-You may want to clean up by 'rm -Rf /tmp/RtmpzeGjIs/Rd2pdf488180c87c2'
+You may want to clean up by 'rm -Rf /tmp/RtmpzS8vcr/Rd2pdf3a60142efeaa'

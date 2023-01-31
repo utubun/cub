@@ -4,7 +4,7 @@ Description: Complete Genome
 Version: 1.0.0
 Author: Dmytro Strunin
 Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
-Depends: R (>= 3.5.0), BSgenome (>= 1.58.0)
+Depends: R (>= 3.5.0), BSgenome (>= 1.64.0)
 Imports: BSgenome
 Suggests:
 License: Artistic-2.0
@@ -16,5 +16,5 @@ release_date: 2006-07-07
 source_url: https://www.ncbi.nlm.nih.gov/assembly/GCF_000006765.1
 biocViews: AnnotationData, Genetics, BSgenome, Pseudomonas_aeruginosa
 NeedsCompilation: no
-Packaged: 2023-01-05 14:10:50 UTC; dmystr
-Built: R 4.0.0; ; 2023-01-05 14:10:57 UTC; unix
+Packaged: 2023-01-30 10:34:44 UTC; ubot
+Built: R 4.2.1; ; 2023-01-30 10:34:46 UTC; unix
