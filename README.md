@@ -1,1 +1,4 @@
-CPH-CUB\n===\n\n Add project description
+CPH-CUB
+===
+
+Add project description
