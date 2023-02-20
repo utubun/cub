@@ -16,11 +16,31 @@ knitr::opts_chunk$set(
 
 # Installation
 
-The package is available from GitHub *cub* repository. To install it you will require `devtools` library to be installed. 
+### Remote installation
+
+When the package is publically available from GitHub *cub* repository:
 
 ```{r eval = FALSE}
-devtools::install_github('MoBaBioinf/cub', dependencies = TRUE, build_vignettes = TRUE)
+devtools::install_github(
+  'MoBaBioinf/cph-cub', 
+  dependencies = TRUE, 
+  build_vignettes = TRUE
+)
 ```
+
+### Local installation
+
+- Clone the package to your local computer;
+- Open in RStudio;
+
+From R CLI run
+
+```{r eval = FALSE}
+devtools::install(dependencies = TRUE, build_vignettes = TRUE)
+```
+
+
+
 
 # Input data
 
