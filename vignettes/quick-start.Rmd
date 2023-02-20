@@ -22,6 +22,8 @@ The package is available from GitHub *utubun/cub* repository. To install it you 
 devtools::install_github('utubun/cub', dependencies = TRUE, build_vignettes = TRUE)
 ```
 
+
+
 # Input data
 
 All the functions in this package are designed to work with `Biostrings::DNAString` and `Biostrings::DNAStringSet` data types.
