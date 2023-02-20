@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 # Installation
 
+<<<<<<< HEAD
 ### Remote installation
 
 When the package is publically available from GitHub *cub* repository:
@@ -26,6 +27,12 @@ devtools::install_github(
   dependencies = TRUE, 
   build_vignettes = TRUE
 )
+=======
+The package is available from GitHub *utubun/cub* repository. To install it you will require `devtools` library to be installed. 
+
+```{r eval = FALSE}
+devtools::install_github('utubun/cub', dependencies = TRUE, build_vignettes = TRUE)
+>>>>>>> 7e09ba3 (Added installation guide to the vignette)
 ```
 
 ### Local installation
