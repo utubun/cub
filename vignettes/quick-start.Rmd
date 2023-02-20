@@ -1,0 +1,42 @@
+---
+title: "Quick Start"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Installation
+
+The package is available from GitHub *cub* repository. To install it you will require `devtools` library to be installed. 
+
+```{r eval = FALSE}
+devtools::install_github('MoBaBioinf/cub', dependencies = TRUE, build_vignettes = TRUE)
+```
+
+# Input data
+
+All the functions in this package are designed to work with `Biostrings::DNAString` and `Biostrings::DNAStringSet` data types.
+
+# Basic workflow
+
+## Extract codons from CDSs
+
+The package is shipped with the CDSs from *P. aeruginosa*  *PAO1* and *PA14* strains:
+
+```{r message = FALSE}
+library(cub)
+
+dna01 <- PAO1CDS
+dna02 <- PA14CDS
+
+show(dna01)
+```
