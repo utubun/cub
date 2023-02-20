@@ -22,7 +22,7 @@ The package is available from GitHub *utubun/cub* repository. To install it you 
 devtools::install_github('utubun/cub', dependencies = TRUE, build_vignettes = TRUE)
 ```
 
-
+This makes all the functionality and data sets of the package available to you.
 
 # Input data
 
