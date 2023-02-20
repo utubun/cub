@@ -67,8 +67,13 @@ setMethod('plot', signature('RSCU'), function(object) {
       data = dat,
       mapping = ggplot2::aes(x = aa, y = rscu, label = codon)
     ) +
-    ggplot2::geom_bar(stat = 'identity', position = 'stack', fill = 'gray85', color = 'white') +
-    ggplot2::geom_text(stat = 'identity', position = 'stack', hjust = 'outward', size = 2.5, color = 'gray25') +
+    ggplot2::geom_bar(stat = 'identity', position = 'stack', fill = 'gray35', color = 'gray85') +
+    ggplot2::geom_text(
+      stat = 'identity',
+      position = ggplot2::position_stack(vjust = .5),
+      size = 2.5,
+      color = 'gray75'
+    ) +
     ggplot2::scale_fill_grey() +
     ggplot2::coord_flip() +
     labs(x = 'Amino acid', y = 'RSCU')

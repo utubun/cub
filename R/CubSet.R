@@ -52,6 +52,10 @@ setMethod('show', signature('CubSet'), function(object) {
   lapply(object@data, show)
 })
 
+setMethod('rscu', signature('CubSet'), function(object, each = TRUE) {
+  standardGeneric("rscu")
+})
+
 setMethod(codons, signature('DNAStringSet'), function(object, ...) {
   # Tests for 'DNAStringSet or DNAString
 
@@ -76,4 +80,16 @@ setMethod(codons, signature('DNAStringSet'), function(object, ...) {
 
   return(res)
 
+})
+
+setMethod('rscu', signature('CubSet'), function(object, each = FALSE) {
+
+  if (each) {
+    return(lapply(object@data, rscu))
+  } else {
+    res <- unlist(lapply(object@data, function(datum) { datum@data }))
+    res <- table(res)
+    res <- setNames(as.vector(res), names(res))
+    return(RSCU(res))
+  }
 })

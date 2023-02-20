@@ -37,7 +37,7 @@ Cub <- function(id, x) {
       as.character(Biostrings::codons(x))
     },
     error = function(cond) {
-      c(NA_character_, attr = cond)
+     NA_character_
     }
   )
 
