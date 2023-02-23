@@ -8,7 +8,7 @@ setClass(
 
 CubSet <- function(x) {
 
-  new('CubSet', data = lapply(names(x), function(nm) { Cub(nm, x[[nm]]) }))
+  new('CubSet', data = lapply(names(x), function(nm) { cub(nm, x[[nm]]) }))
 
 }
 

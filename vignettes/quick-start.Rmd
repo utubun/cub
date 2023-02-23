@@ -14,6 +14,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r setup}
+library(cub)
+```
+
 # Installation
 
 The package is available from GitHub *utubun/cub* repository. To install it you will require `devtools` library to be installed. 
@@ -35,11 +39,16 @@ All the functions in this package are designed to work with `Biostrings::DNAStri
 The package is shipped with the CDSs from *P. aeruginosa*  *PAO1* and *PA14* strains:
 
 ```{r message = FALSE}
-library(cub)
+#library(cub)
 
-dna01 <- PAO1CDS
-dna02 <- PA14CDS
+pao1 <- PAO1CDS
 
-show(dna01)
+pao1
+```
+
+Next we will convert any gene of interest into `Cub` object, to access the tools for *codon usage bias* analysis.
+
+```{r}
+cub01 <- cub('Gene A', dna[[1]])
 ```
 
