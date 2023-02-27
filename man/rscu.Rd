@@ -16,6 +16,6 @@ Counts representing Relative Synonymous Codon Usage for a given Gene / Genome
 Creates a Counts instance from a given Cub object
 }
 \examples{
-dat <- Cub(PAO14[[1]])
+dat <- Cub(PAO14CDS[[1]])
 rscu(dat)
 }

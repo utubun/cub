@@ -3,7 +3,7 @@
 #' @return NULL
 #' @export
 #' @examples
-#' dat <- Cub(PAO14[[1]])
+#' dat <- Cub(PAO14CDS[[1]])
 #' summary(dat)
 setGeneric("summary", function(object, ...) {
   standardGeneric("summary")
@@ -14,7 +14,7 @@ setGeneric("summary", function(object, ...) {
 #' @return NULL
 #' @export
 #' @examples
-#' dat <- Cub(PAO14[[1]])
+#' dat <- Cub(PAO14CDS[[1]])
 #' print(dat)
 setGeneric("print", function(object, ...) {
   standardGeneric("print")
@@ -25,7 +25,7 @@ setGeneric("print", function(object, ...) {
 #' @return Counts representing Relative Synonymous Codon Usage for a given Gene / Genome
 #' @export
 #' @examples
-#' dat <- Cub(PAO14[[1]])
+#' dat <- Cub(PAO14CDS[[1]])
 #' rscu(dat)
 setGeneric('rscu', function(object, ...) {
   standardGeneric('rscu')
@@ -36,7 +36,7 @@ setGeneric('rscu', function(object, ...) {
 #' @return character vector of codones, or list of characters for DNAStringSet
 #' @export
 #' @examples
-#' dat <- PAO14[[1]]
+#' dat <- PAO14CDS[[1]]
 #' codons(dat)
 setGeneric("codons", function(object, ...) {
   standardGeneric("codons")
@@ -48,7 +48,7 @@ setGeneric("codons", function(object, ...) {
 #' for a given codon.
 #' @export
 #' @examples
-#' dat <- rscu(PAO14[[1]])
+#' dat <- rscu(PAO14CDS[[1]])
 #' as.data.frame(dat)
 setGeneric("as.data.frame", function(object, method, window) {
   standardGeneric("as.data.frame")
@@ -71,7 +71,7 @@ setGeneric("plot", function(object, value, scale, ...) {
 #' @return RAC representing Relative Adaptiveness of a Codon for a given Gene / Genome
 #' @export
 #' @examples
-#' dat <- Cub(PAO14[[1]])
+#' dat <- Cub(PAO14CDS[[1]])
 #' rac(dat)
 setGeneric('rac', function(object, ...) {
   standardGeneric('rac')
@@ -82,7 +82,7 @@ setGeneric('rac', function(object, ...) {
 #' @return RAC representing Relative Adaptiveness of a Codon for a given Gene / Genome
 #' @export
 #' @examples
-#' dat <- Cub(PAO14[[1]])
+#' dat <- Cub(PAO14CDS[[1]])
 #' cai(dat)
 setGeneric('cai', function(object, ...) {
   standardGeneric('cai')

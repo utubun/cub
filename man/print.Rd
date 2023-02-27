@@ -13,6 +13,6 @@ print(object, ...)
 Prints a Cub object.
 }
 \examples{
-dat <- Cub(PAO14[[1]])
+dat <- Cub(PAO14CDS[[1]])
 print(dat)
 }

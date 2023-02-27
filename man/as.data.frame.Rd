@@ -17,6 +17,6 @@ for a given codon.
 Converts Counts instance into data.frame
 }
 \examples{
-dat <- rscu(PAO14[[1]])
+dat <- rscu(PAO14CDS[[1]])
 as.data.frame(dat)
 }

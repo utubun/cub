@@ -4,26 +4,18 @@
 \alias{count,Cub-method}
 \title{Counts codons' occurrence in a given Cub instance}
 \usage{
-\S4method{count}{Cub}(object, ...)
-
-\S4method{count}{Cub}(object, ...)
+\S4method{count}{Cub}(object)
 }
 \arguments{
 \item{object}{A Cub instance to summarize}
 }
 \value{
 A named integer vector representing count of a given ccodon in a DNAString
-
-RSCU representing Relative Synonymous Codon Usage for a given Gene / Genome
 }
 \description{
 Counts codons' occurrence in a given Cub instance
-
-Creates a RSCU instance from a given Cub object
 }
 \examples{
 dat <- Cub('A DNA', PA14CDS[[1]])
 count(dat)
-dat <- Cub('A DNA', PA14CDS[[1]])
-rac(dat)
 }

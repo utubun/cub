@@ -16,6 +16,6 @@ character vector of codones, or list of characters for DNAStringSet
 Split DNAString / DNAString set into codons
 }
 \examples{
-dat <- PAO14[[1]]
+dat <- PAO14CDS[[1]]
 codons(dat)
 }

@@ -5,7 +5,7 @@
 \title{Plots Counts as a stucked bar chart, represented RSCU(i, j) for each codon, grouped by
 amino acid.}
 \usage{
-plot(object, method, window)
+plot(object, value, scale, ...)
 }
 \arguments{
 \item{x}{A Counts object to be plotted}
