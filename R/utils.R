@@ -1,4 +1,6 @@
-cub <- function(id, x) {
+#' @export
+#'
+Cub <- function(id, x) {
   if(missing(id)) {
     stop('Argument id is rquired')
   }
@@ -31,5 +33,13 @@ cub <- function(id, x) {
   return(
     new('Cub', id = id, data = cdns)
   )
+
+}
+
+#' Creates an instance of CubSet
+#' @export
+CubSet <- function(x) {
+
+  new('CubSet', data = lapply(names(x), function(nm) { Cub(nm, x[[nm]]) }))
 
 }

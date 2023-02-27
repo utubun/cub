@@ -41,14 +41,15 @@ The package is shipped with the CDSs from *P. aeruginosa*  *PAO1* and *PA14* str
 ```{r message = FALSE}
 #library(cub)
 
-pao1 <- PAO1CDS
+dna <- PAO1CDS
 
-pao1
+dna
 ```
 
 Next we will convert any gene of interest into `Cub` object, to access the tools for *codon usage bias* analysis.
 
 ```{r}
-cub01 <- cub('Gene A', dna[[1]])
+cb <- Cub('Gene A', dna[[1]])
+cb
 ```
 
