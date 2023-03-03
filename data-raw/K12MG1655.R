@@ -1,5 +1,5 @@
 ## code to prepare `K12MG1655` dataset goes here
-ANN <- K12MG1655 <- GenomicFeatures::makeTxDbFromGFF(
+ANN <- GenomicFeatures::makeTxDbFromGFF(
   './data-raw/txdb/GCF_000005845.2_ASM584v2_genomic.gff.gz',
   'gff',
   'NCBI',
