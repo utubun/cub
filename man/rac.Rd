@@ -4,7 +4,7 @@
 \alias{rac}
 \title{Creates a RAC instance from a given Cub object}
 \usage{
-rac(object, ...)
+rac(object, ref, ...)
 }
 \arguments{
 \item{object}{A Cub instance to summarize}

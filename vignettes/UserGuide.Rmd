@@ -1,0 +1,142 @@
+---
+title: "User Guide"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{User Guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r setup}
+library(cub)
+```
+
+# Input data
+
+Prepare input genomes for *P. aeruginosa* *PAO1* and *PA14* strains, *E. coli* *K12 MG1655*:
+
+```{r}
+pao1 <- pao1
+pa14 <- pa14
+ek12 <- k12
+```
+
+Convert them to the `CubSet` objects:
+
+```{r}
+cub01 <- CubSet(pao1)
+cub14 <- CubSet(pa14)
+cub12 <- CubSet(ek12)
+```
+
+Get the reference set of highly expressed genes (based on the work of Sharp and Li (1986) done on *E. coli*):
+
+```{r}
+ref00 <- Sharp166$gene[Sharp166$expression == 'very high']
+```
+
+Find subset of such genes in all genomes, and calculate Relative Synonymous Codon Usage (RSCU) for each reference set. Compare it to the RSCU for randomly generated DNA:
+
+```{r message = FALSE}
+library(TxDb.Paeruginosa.PAO1)
+library(TxDb.Paeruginosa.PA14)
+library(TxDb.Ecoli.K12.MG1655)
+library(ggplot2)
+library(ggpubr)
+
+map01 <- biomaRt::select(TxDb.Paeruginosa.PAO1, names(pao1), 'TXNAME', 'CDSNAME')
+map14 <- biomaRt::select(TxDb.Paeruginosa.PA14, names(pa14), 'TXNAME', 'CDSNAME')
+map12 <- biomaRt::select(TxDb.Ecoli.K12.MG1655, names(ek12), 'TXNAME', 'CDSNAME')
+
+idx01 <- as.numeric(na.omit(match(ref00, map01[, 2])))
+idx14 <- as.numeric(na.omit(match(ref00, map14[, 2])))
+idx12 <- as.numeric(na.omit(match(ref00, map12[, 2])))
+
+ref01 <- CubSet(pao1[idx01]) |> rscu()
+ref14 <- CubSet(pa14[idx14]) |> rscu()
+ref12 <- CubSet(ek12[idx12]) |> rscu()
+
+dna   <- sapply(ek12[idx12], length) 
+dna   <- Biostrings::DNAStringSet(sapply(dna, \(x) { dnar(x) }))
+refrd <- CubSet(dna) |> rscu()
+
+prd <- cplot(refrd) + ggtitle('Randomly generated DNA') 
+p01 <- cplot(ref01) + ggtitle('Reference set, P. aeruginosa PAO1')
+p14 <- cplot(ref14) + ggtitle('Reference set, P. aeruginosa PA14')
+p12 <- cplot(ref12) + ggtitle('Reference set, E. coli, K12 MG1655')
+
+p   <- ggarrange(p01, p12, p14, prd, ncol = 2, nrow = 2) + ggtitle('Relative Synonymous Codon Usage (RSCU)')
+```
+
+
+## Calculate CAI
+
+```{r}
+res01 <- cai(cub01, ref01)
+res14 <- cai(cub14, ref14)
+res12 <- cai(cub12, ref12)
+
+dt <- data.frame(
+  cai = c(res01, res14, res12),
+  org = c(
+    rep('P. aeruginosa, PAO1', length(res01)),
+    rep('P. aeruginosa, PA14', length(res14)),
+    rep('E. coli, K12 MG1655', length(res12))
+    )
+  ) |>
+  dplyr::filter(!is.na(cai)) 
+
+pd <- ggplot(data = dt, aes(x = cai, fill = org, colour = org)) +
+  geom_density(linewidth = .25, alpha = .5) +
+  labs(title = 'Codone Adaptation Index', subtitle = 'Calcuated per each individual gene', x = 'CAI', y = 'Desinty') +
+  ggthemes::theme_few()
+pd
+```
+
+
+## Highly expressed genes
+
+### P. aeruginosa PAO1
+
+```{r, eval = F}
+idx_high <- which(res01 >= quantile(res01, .95, na.rm = TRUE))
+idx_low <- which(res01 <= quantile(res01, .05, na.rm = TRUE))
+pao1_high <- biomaRt::select(TxDb.Paeruginosa.PAO1, names(pao1)[idx_high], 'TXNAME', 'CDSNAME')[, 2]
+pao1_low <- biomaRt::select(TxDb.Paeruginosa.PAO1, names(pao1)[idx_low], 'TXNAME', 'CDSNAME')[, 2]
+
+pth  <- KEGGREST::keggLink('pathway', 'pae')
+gns  <- KEGGREST::keggList(paste('pae', pao1_high, sep = ':'))
+dt   <- data.frame(path = pth[names(gns)], genes = names(gns), func = gns)
+table(dt$func)
+```
+
+### P. aeruginosa PA14
+
+```{r eval = F}
+idx_high  <- which(res14 >= quantile(res14, .95, na.rm = TRUE))
+idx_low   <- which(res14 <= quantile(res14, .05, na.rm = TRUE))
+pa14_high <- biomaRt::select(TxDb.Paeruginosa.PA14, names(pa14)[idx_high], 'TXNAME', 'CDSNAME')[, 2]
+pa14_low  <- biomaRt::select(TxDb.Paeruginosa.PA14, names(pa14)[idx_low], 'TXNAME', 'CDSNAME')[, 2]
+
+pth  <- KEGGREST::keggLink('pathway', 'pau')
+gns  <- KEGGREST::keggList(paste('pau', na.omit(pa14_high[1:250]), sep = ':'))
+dt   <- data.frame(path = pth[names(gns)], genes = names(gns), func = gns)
+
+table(dt$func)
+```
+
+### E. coli K12 MG1655
+
+```{r eval = F}
+idx_high  <- which(res12 >= quantile(res12, .95, na.rm = TRUE))
+idx_low   <- which(res12 <= quantile(res12, .05, na.rm = TRUE))
+pa14_high <- biomaRt::select(TxDb.Ecoli.K12.MG1655, names(ek12)[idx_high], 'TXNAME', 'CDSNAME')[, 2]
+pa14_low  <- biomaRt::select(TxDb.Ecoli.K12.MG1655, names(ek12)[idx_low], 'TXNAME', 'CDSNAME')[, 2]

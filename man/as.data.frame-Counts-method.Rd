@@ -4,7 +4,7 @@
 \alias{as.data.frame,Counts-method}
 \title{Converts Counts instance into data.frame}
 \usage{
-\S4method{as.data.frame}{Counts}(object)
+\S4method{as.data.frame}{Counts}(x, row.names = NULL, optional = FALSE, ...)
 }
 \arguments{
 \item{Counts}{object to be converted}

@@ -5,7 +5,7 @@
 #' @examples
 #' dat <- Cub('A DNA', PAO1CDS[[1]])
 #' summary(dat)
-setMethod(summary, signature('Cub'), function(object, ...) {
+setMethod('summary', signature('Cub'), function(object, ...) {
 
   counts <- table(object@data)
   counts <- sort(setNames(as.vector(counts), names(counts)), decreasing = TRUE)
@@ -19,21 +19,6 @@ setMethod(summary, signature('Cub'), function(object, ...) {
   cat(total, cuniq, domin, rare)
 })
 
-#' Prints of a Cub object.
-#' @param object A Cub instance to summarize
-#' @return NULL
-#' @export
-#' @examples
-#' dat <- Cub('A DNA', PAO1CDS[[1]])
-#' summary(dat)
-setMethod('print', signature('Cub'), function(object, ...) {
-  cat(
-    sprintf('ID:\t%s\n', object@id),
-    '\n',
-    summary(object)
-  )
-})
-
 #' Shows a Cub object.
 #' @param object A Cub instance to summarize
 #' @return NULL
@@ -42,7 +27,7 @@ setMethod('print', signature('Cub'), function(object, ...) {
 #' dat <- Cub('A DNA', PAO1CDS[[1]])
 #' dat
 setMethod('show', signature('Cub'), function(object) {
-  print(object)
+  object
 })
 
 
@@ -133,11 +118,11 @@ setMethod('rscu', signature('Cub'), function(object) {
 #' rscu(dat)
 setMethod('rac', signature('Cub'), function(object, ref) {
 
-  cnts_obs <- count(object)
-  cnts_max <- count(ref, each = FALSE)
+  cnts_obs <- rscu(object)
+  cnts_max <- sapply(ref@data, max, na.rm = TRUE)
 
-  res <- lapply(names(cnts_obs@data), function(nm) {
-    cnts_obs@data[[nm]] / max(cnts_max@data[[nm]])
+  res <- sapply(names(cnts_obs@data), function(nm) {
+    cnts_obs@data[[nm]] / cnts_max[[nm]]
   })
 
   names(res) <- names(cnts_obs@data)
@@ -154,19 +139,107 @@ setMethod('rac', signature('Cub'), function(object, ref) {
 #' @examples
 #' dat <- Cub('A DNA', PA14CDS[[1]])
 #' cai(dat)
-setMethod('cai', signature('Cub'), function(object, ref) {
+setMethod('cai', signature('Cub'), function(x, ref) {
 
-  w <- rac(object, ref)
+  w <- rac(x, ref)
   w <- unlist(setNames(w@data, NULL))
-  w[w == 0] <- .5
+  w <- replace(w, w == 0, .5)
 
-  w <- w[object@data]
+  w <- w[x@data]
 
-  res <- prod(w)^(1 / length(w))
-
+  res <- (prod(w))^(1 / length(w))
+  #res <- exp(1 / !is.na(w) * sum(log(w[!is.na(w)])))
   return(res)
 })
 
+#' Converts Counts instance into data.frame
+#' @param Counts object to be converted
+#' @return data.frame with columns aa: Amino Acid, codon: Codon code, rscu: RSCU x(i, j)
+#' for a given codon.
+#' @export
+#' @examples
+#' Cub('A DNA', PA14CDS[[1]]) |>
+#'   rscu() |>
+#'   as.data.frame() |>
+#'   head()
+setMethod('as.data.frame', signature('Counts'), function(x, ...) {
+  res <- do.call(
+    rbind,
+    lapply(
+      names(x@data),
+      function(nm) {
+        data.frame(
+          aa    = nm,
+          codon = names(x@data[[nm]]),
+          val   = x@data[[nm]]
+        )
+      }
+    )
+  )
+  rownames(res) <- seq(nrow(res))
+  return(res)
+})
+
+#' Plots Counts as a stucked bar chart, represented RSCU(i, j) for each codon, grouped by
+#' amino acid.
+#' @param x A Counts object to be plotted
+#' @return A ggplot2::ggplot object
+#' @export
+#' @examples
+#' Cub('A DNA', PA14CDS[[1]]) |>
+#'   rscu() |>
+#'   plot()
+setMethod('cplot', signature('Counts'), function(x, ...) {
+
+  args <- list(...)
+
+  scale <- args[['scale']]
+
+  dat <- as.data.frame(x) |>
+    dplyr::filter(val > 0, aa != '*')
+
+  # if (!is.null(scale) & (scale == 'all' | scale == TRUE)) {
+  #   dat <- dat |>
+  #     dplyr::mutate(val = val / sum(val)) |>
+  #     dplyr::arrange(aa, dplyr::desc(val)) |>
+  #     dplyr::mutate(aa = forcats::fct_reorder(aa, val, sum))
+  # } else if (!is.null(scale) & scale == 'aa') {
+  #   dat <- dat |>
+  #     dplyr::group_by(aa) |>
+  #     dplyr::mutate(val = val / sum(val), maxval = max(val)) |>
+  #     dplyr::ungroup() |>
+  #     dplyr::mutate(aa = forcats::fct_reorder(aa, maxval), maxval = NULL) |>
+  #     dplyr::arrange(aa, desc(val))
+  # } else {
+    dat <- dat |>
+      dplyr::mutate(aa = purrr::map_chr(aa, ~AMINOACIDS[[.x]][[2]])) |>
+      dplyr::arrange(aa, dplyr::desc(val)) |>
+      dplyr::mutate(aa = forcats::fct_reorder(aa, val, sum))
+  #}
+
+  plt <- ggplot2::ggplot(
+    data = dat,
+    mapping = ggplot2::aes(x = aa, y = val, label = codon)
+  ) +
+    ggplot2::geom_bar(stat = 'identity', position = 'stack', fill = 'gray35', color = 'gray85') +
+    ggplot2::geom_text(
+      stat = 'identity',
+      position = ggplot2::position_stack(vjust = .5),
+      size = 2.5,
+      color = 'gray75'
+    ) +
+    ggplot2::scale_fill_grey() +
+    ggplot2::coord_flip() +
+    ggplot2::labs(x = 'Amino acid', y = 'Count') +
+    ggthemes::theme_few()
+
+  # if (scale == TRUE | scale %in% c('all', 'aa')) {
+  #   plt <- plt +
+  #     ggplot2::scale_y_continuous(labels = scales::percent_format(scale = 100))
+  # }
+
+  return(plt)
+})
 
 #' Shows summary of a Cub object.
 #' @param object A CubSet instance to summarize
@@ -175,12 +248,8 @@ setMethod('cai', signature('Cub'), function(object, ref) {
 #' @examples
 #' dat <- Cub('A DNA', PA14CDS[[1]])
 #' summary(dat)
-setMethod(summary, signature('CubSet'), function(object, ...) {
+setMethod('summary', signature('CubSet'), function(object, ...) {
   lapply(object@data, summary)
-})
-
-setMethod('print', signature('CubSet'), function(object, ...) {
-  lapply(object@data, print)
 })
 
 setMethod('show', signature('CubSet'), function(object) {
@@ -239,50 +308,22 @@ setMethod('rscu', signature('CubSet'), function(object, each = FALSE) {
   }
 })
 
-setMethod('rac', signature('CubSet'), function(object, each = FALSE) {
+setMethod('rac', signature('CubSet'), function(object, ref, each = FALSE) {
 
   if (each) {
-    return(lapply(object@data, rac))
+    return(lapply(object@data, rac, ref = ref))
   } else {
     res <- unlist(lapply(object@data, function(datum) { datum@data }))
     res <- new('Cub', data = res)
-    res <- rac(res)
+    res <- rac(res, ref = ref)
 
     return(res)
   }
 })
 
-setMethod('cai', signature('CubSet'), function(object, ref) {
+setMethod('cai', signature('CubSet'), function(x, ref) {
 
-  return(sapply(object@data, cai))
-})
-
-#' Converts Counts instance into data.frame
-#' @param Counts object to be converted
-#' @return data.frame with columns aa: Amino Acid, codon: Codon code, rscu: RSCU x(i, j)
-#' for a given codon.
-#' @export
-#' @examples
-#' Cub('A DNA', PA14CDS[[1]]) |>
-#'   rscu() |>
-#'   as.data.frame() |>
-#'   head()
-setMethod('as.data.frame', signature('Counts'), function(object) {
-  res <- do.call(
-    rbind,
-    lapply(
-      names(object@data),
-      function(nm) {
-        data.frame(
-          aa    = nm,
-          codon = names(object@data[[nm]]),
-          val   = object@data[[nm]]
-        )
-      }
-    )
-  )
-  rownames(res) <- seq(nrow(res))
-  return(res)
+  return(sapply(x@data, \(datum) { cai(x = datum, ref = ref) } ))
 })
 
 #' Plots RSCU as a stucked bar chart, represented RSCU(i, j) for each codon, grouped by
@@ -294,13 +335,13 @@ setMethod('as.data.frame', signature('Counts'), function(object) {
 #' Cub('A DNA', PA14CDS[[1]]) |>
 #'   rscu() |>
 #'   plot()
-setMethod('plot', signature('Cub'), function(object, value = 'count', scale = FALSE, ...) {
+setMethod('plot', signature('Cub'), function(x, value = 'count', scale = FALSE, ...) {
 
   dat <- switch(
     value,
-    count = count(object),
-    rscu  = rscu(object),
-    rac   = rac(object),
+    count = count(x),
+    rscu  = rscu(x),
+    rac   = rac(x),
     #cai   = cai(object),
   )
 
@@ -358,9 +399,9 @@ setMethod('plot', signature('Cub'), function(object, value = 'count', scale = FA
 #' Cub('A DNA', PA14CDS[[1]]) |>
 #'   rscu() |>
 #'   plot()
-setMethod('plot', signature('CubSet'), function(object, value = 'count', scale = FALSE, ...) {
+setMethod('plot', signature('CubSet'), function(x, value = 'count', scale = FALSE, ...) {
 
-  dat <- unlist(lapply(object@data, \(x) { x@data }))
+  dat <- unlist(lapply(x@data, \(datum) { datum@data }))
   dat <- new('Cub', data = dat)
 
   plot(dat, value, scale)
