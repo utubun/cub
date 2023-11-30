@@ -30,7 +30,6 @@ setMethod('show', signature('Cub'), function(object) {
   object
 })
 
-
 #' Split DNAString / DNAString set into codons
 #' @param character DNAString or DNAStringSet representing the Gene or Genome
 #' @return character vector of codones, or list of characters for DNAStringSet

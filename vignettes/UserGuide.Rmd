@@ -7,14 +7,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-
 ```{r setup}
 library(cub)
 ```
@@ -31,7 +23,7 @@ ek12 <- k12
 
 Convert them to the `CubSet` objects:
 
-```{r}
+```{r eval = FALSE}
 cub01 <- CubSet(pao1)
 cub14 <- CubSet(pa14)
 cub12 <- CubSet(ek12)
@@ -39,13 +31,13 @@ cub12 <- CubSet(ek12)
 
 Get the reference set of highly expressed genes (based on the work of Sharp and Li (1986) done on *E. coli*):
 
-```{r}
+```{r eval = FALSE}
 ref00 <- Sharp166$gene[Sharp166$expression == 'very high']
 ```
 
 Find subset of such genes in all genomes, and calculate Relative Synonymous Codon Usage (RSCU) for each reference set. Compare it to the RSCU for randomly generated DNA:
 
-```{r message = FALSE}
+```{r message = FALSE, eval = F}
 library(TxDb.Paeruginosa.PAO1)
 library(TxDb.Paeruginosa.PA14)
 library(TxDb.Ecoli.K12.MG1655)
@@ -73,13 +65,52 @@ p01 <- cplot(ref01) + ggtitle('Reference set, P. aeruginosa PAO1')
 p14 <- cplot(ref14) + ggtitle('Reference set, P. aeruginosa PA14')
 p12 <- cplot(ref12) + ggtitle('Reference set, E. coli, K12 MG1655')
 
-p   <- ggarrange(p01, p12, p14, prd, ncol = 2, nrow = 2) + ggtitle('Relative Synonymous Codon Usage (RSCU)')
+ggarrange(p01, p12, p14, prd, ncol = 2, nrow = 2) + ggtitle('Relative Synonymous Codon Usage (RSCU)')
+```
+
+### Tabular view for PAO1, PA14
+
+Tabulate RACU for *P. aeruginosa PAO1 & PA14*.
+
+```{r}
+res <- dplyr::bind_rows(
+  as.data.frame(ref01) |>
+    dplyr::mutate(org = 'P. aeruginosa, PAO1'),
+  as.data.frame(ref14) |>
+    dplyr::mutate(org = 'P. aeruginosa, PA14')
+  ) |>
+  dplyr::filter(aa != "*") |>
+  dplyr::mutate(aa = purrr::map_chr(aa, ~AMINOACIDS[[.x]][[2]])) |>
+  dplyr::arrange(aa, dplyr::desc(val)) |>
+  dplyr::mutate(aa = forcats::fct_reorder(aa, val, sum)) |>
+  tidyr::pivot_wider(names_from = org, values_from = val) 
+
+ plt <- ggplot2::ggplot(
+    data = tidyr::pivot_longer(res, 3:4) |> dplyr::mutate(name = factor(name, levels = c('P. aeruginosa, PAO1', 'P. aeruginosa, PA14'))),
+    mapping = ggplot2::aes(x = aa, y = value, label = codon)
+  ) +
+    ggplot2::geom_bar(stat = 'identity', position = 'stack', fill = 'gray35', color = 'gray85') +
+    ggplot2::geom_text(
+      stat = 'identity',
+      position = ggplot2::position_stack(vjust = .5),
+      size = 2.5,
+      color = 'gray75'
+    ) +
+    ggplot2::scale_fill_grey() +
+    ggplot2::facet_wrap(~name) +
+    ggplot2::coord_flip() +
+    ggplot2::labs(x = 'Amino acid', y = 'RSCU') +
+    ggthemes::theme_few() +
+    ggplot2::theme(axis.title.y = element_blank())
+ 
+colnames(res) <- stringr::str_to_sentence(colnames(res))
+xlsx::write.xlsx(as.data.frame(res), file = 'rscu.xlsx', sheetName = 'RSCU', row.names = FALSE)
 ```
 
 
 ## Calculate CAI
 
-```{r}
+```{r eval = F}
 res01 <- cai(cub01, ref01)
 res14 <- cai(cub14, ref14)
 res12 <- cai(cub12, ref12)
