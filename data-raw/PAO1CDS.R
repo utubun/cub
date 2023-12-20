@@ -1,6 +1,5 @@
-ANN <- AnnotationDbi::loadDb("./data-raw/txdb/TxDb.Paeruginosa.ASM676v1.sqlite")
-GNM <- BSgenome.Paeruginosa.NCBI.ASM676v1::BSgenome.Paeruginosa.NCBI.ASM676v1
-
+ANN <- TxDb.Paeruginosa.PAO1::TxDb.Paeruginosa.PAO1
+GNM <- BSgenome.Paeruginosa.NCBI.PAO1::BSgenome.Paeruginosa.NCBI.PAO1
 GRN <- GenomicFeatures::cds(ANN, use.names = TRUE)
 
 PAO1CDS <- Biostrings::getSeq(GNM, GRN)

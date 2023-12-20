@@ -216,7 +216,17 @@ setMethod(codons, signature('DNAStringSet'), function(object, ...) {
 setMethod('count', signature('CubSet'), function(object, each = FALSE) {
 
   if (each) {
-    return(lapply(object@data, count))
+    pb <- progress::progress_bar$new(
+      format = " calculating CUBs genewise [:bar] :percent eta: :eta",
+      total = length(object@data),
+      clear = FALSE,
+      width = 80
+    )
+    result <- lapply(object@data, \(gene) {
+      pb$tick()
+      count(gene)
+    })
+    return(result)
   } else {
     res <- unlist(lapply(object@data, function(datum) { datum@data }))
     res <- new('Cub', data = res)
