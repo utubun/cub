@@ -1,0 +1,108 @@
+---
+title: "Quick Start"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(cub)
+```
+
+# Installation
+
+The package is available from GitHub *utubun/cub* repository. To install it you will require `devtools` library to be installed. 
+
+```{r eval = FALSE}
+devtools::install_github('utubun/cub', dependencies = TRUE, build_vignettes = TRUE)
+```
+
+This makes all the functionality and data sets of the package available to you.
+
+# Input data
+
+All the functions in this package are designed to work with `Biostrings::DNAString` and `Biostrings::DNAStringSet` data types.
+
+The package is shipped with the CDSs from *P. aeruginosa*  *PAO1* and *PA14* strains. To see all the datasets availible:
+
+```{r message = FALSE}
+#library(cub)
+
+data(package = 'cub')
+```
+
+Importing datasets is easy:
+
+```{r}
+dna <- PAO1CDS
+dna
+```
+
+## Extracting codons from CDSs
+
+We can convert any gene of interest into `Cub` object, to access the tools for *codon usage bias* analysis.
+
+```{r}
+cb <- Cub('AAG03391.1', dna[[1]])
+cb
+```
+We can convert a given subset, or all of the genes into the `CubSet` object, to access the methods for the *codon usage bias* analysis:
+
+```{r eval = FALSE}
+dat <- CubSet(dna)
+```
+
+## Directly import codon sets from package
+
+It takes some time to extract all codons from all CDSs of *P. aeruginosa PAO1*. Instead we can import the dataset directly from the package:
+
+```{r}
+dat <- PAO1
+```
+
+# Methods
+
+Several methods are defined on `Cub` and `CubSet` (latter will be merged into `Cub`) objects.
+
+## RSCU
+
+RSCU stands for **R**elative **S**ynonymous **C**odon **U**sage, and calculated according to this equation:
+
+$$
+RSCU_{i,j} = \frac{n_ix_{i,j}}{ \sum_{j = 1}^{n} x_{i, j}}
+$$
+
+In other words, $RSCU_{i,j}$ is an observed count of codon $x_j$ for the amino acid $a_i$ normalized / centered by mean count of all codons encoding the aminoacid $a_i$. 
+
+RSCU can be calculated for *single gene*, or for the subset or the whole list of genes from the given genome. In the example below, we calculate RSCU for all genes in genome, pulling the individual genes together:
+
+```{r}
+rscu_tab <- rscu(dat)
+```
+
+### Methods
+
+Several methods such as `print`, `show`, `summary`, `as.data.frame()` are defined on resulted `RSCU` object (TODO `write_csv`, `write_rds` etc). For example, converting results from above to data frame:
+
+```{r}
+as.data.frame(rscu_tab)
+```
+
+### Plots
+
+RSCU can be visualized directly by plotting `Cub` or `CubSet`:
+
+
+```{r}
+plot(dat, value = 'count', scale = 'aa')
+```
+
